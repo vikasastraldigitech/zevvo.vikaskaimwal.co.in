@@ -1,0 +1,237 @@
+/* Carousel Styles */
+.carousel-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.carousel-container {
+  display: flex;
+  gap: var(--space-md);
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scrollbar-width: none; /* Firefox */
+  padding-bottom: var(--space-md);
+}
+
+.carousel-container::-webkit-scrollbar {
+  display: none; /* Chrome/Safari */
+}
+
+.carousel-item {
+  flex: 0 0 240px;
+}
+
+@media (min-width: 768px) {
+  .carousel-item {
+    flex: 0 0 280px;
+  }
+}
+
+.carousel-arrow {
+  position: absolute;
+  top: 40%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-bg);
+  border: var(--border-width) solid var(--color-border-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--font-md);
+  color: var(--color-text);
+  z-index: 10;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: all var(--transition-fast);
+}
+
+.carousel-arrow:hover {
+  background-color: var(--color-text);
+  color: var(--color-bg);
+}
+
+.carousel-arrow-left {
+  left: -20px;
+}
+
+.carousel-arrow-right {
+  right: -20px;
+}
+
+@media (max-width: 768px) {
+  .carousel-arrow {
+    display: none;
+  }
+}
+
+/* Home Page Specific Styles */
+.hero-section {
+  position: relative;
+  width: 100%;
+  height: 75vh;
+  min-height: 480px;
+  max-height: 720px;
+  background-color: var(--color-bg-tertiary);
+  overflow: hidden;
+}
+
+.hero-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.5) 100%);
+  display: flex;
+  align-items: flex-end;
+  padding: var(--space-2xl) var(--container-padding);
+}
+
+.hero-content {
+  color: var(--color-bg);
+  max-width: 600px;
+}
+
+.hero-subtitle {
+  font-family: var(--font-heading);
+  font-size: var(--font-xs);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: var(--space-xs);
+}
+
+.hero-title {
+  font-size: var(--font-3xl);
+  font-weight: 800;
+  margin-bottom: var(--space-md);
+  color: var(--color-bg);
+  line-height: 1.1;
+}
+
+@media (min-width: 768px) {
+  .hero-title {
+    font-size: var(--font-4xl);
+  }
+}
+
+.hero-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+}
+
+/* Category Tiles */
+.category-tiles-section {
+  padding: var(--space-3xl) 0;
+}
+
+.section-title {
+  font-size: var(--font-2xl);
+  text-align: center;
+  margin-bottom: var(--space-xl);
+  letter-spacing: 0.08em;
+}
+
+.tiles-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-md);
+}
+
+@media (min-width: 768px) {
+  .tiles-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.tile-card {
+  position: relative;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  display: block;
+}
+
+.tile-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-slow);
+}
+
+.tile-card:hover img {
+  transform: scale(1.05);
+}
+
+.tile-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: flex-end;
+  padding: var(--space-md);
+  transition: background var(--transition-fast);
+}
+
+.tile-card:hover .tile-overlay {
+  background: rgba(0, 0, 0, 0.35);
+}
+
+.tile-title {
+  color: var(--color-bg);
+  font-size: var(--font-lg);
+  font-family: var(--font-heading);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+/* Editorial Promo Banners */
+.editorial-banner {
+  display: grid;
+  grid-template-columns: 1fr;
+  background-color: var(--color-bg-secondary);
+  margin: var(--space-3xl) 0;
+}
+
+@media (min-width: 768px) {
+  .editorial-banner {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.editorial-img {
+  width: 100%;
+  height: 100%;
+  min-height: 350px;
+  object-fit: cover;
+}
+
+.editorial-content {
+  padding: var(--space-2xl);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: var(--space-md);
+}
+
+.editorial-tag {
+  font-size: var(--font-xs);
+  font-family: var(--font-heading);
+  letter-spacing: 0.15em;
+  color: var(--color-text-muted);
+}
+
+.editorial-title {
+  font-size: var(--font-3xl);
+  line-height: 1.1;
+}
+
+.editorial-desc {
+  color: var(--color-text-muted);
+  font-size: var(--font-base);
+}

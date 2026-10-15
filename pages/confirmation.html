@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order Confirmed | ZEVVO</title>
+  <meta name="description" content="Thank you for your order with ZEVVO. Order confirmation and summary.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400..800;1,400..800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <link rel="stylesheet" href="../assets/css/main.css">
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  <div id="header-placeholder"></div>
+
+  <main id="main-content" class="container my-3xl text-center" style="max-width: 650px;">
+    <div style="font-size: 3rem; color: var(--color-success);" class="mb-md">
+      <i class="fa-regular fa-circle-check"></i>
+    </div>
+    <h1 class="listing-title mb-xs">THANK YOU FOR YOUR ORDER!</h1>
+    <p class="text-muted mb-xl">We've received your order and sent a confirmation email to <strong id="confirmEmail">your email address</strong>.</p>
+
+    <div class="cart-summary-box text-left mb-2xl">
+      <div class="flex-between mb-md pb-xs" style="border-bottom: 1px solid var(--color-border);">
+        <span class="font-heading font-bold text-xs uppercase">ORDER ID: <span id="confirmOrderId">#ZEV-123456</span></span>
+        <span class="text-xs text-muted" id="confirmDate">Date</span>
+      </div>
+
+      <div id="confirmItemsList" class="flex flex-column gap-md mb-lg">
+        <!-- JS Rendered -->
+      </div>
+
+      <div class="summary-row summary-total">
+        <span>TOTAL PAID</span>
+        <span id="confirmTotalPaid">$0.00</span>
+      </div>
+    </div>
+
+    <a href="category.html?cat=new" class="btn btn-primary btn-lg">CONTINUE SHOPPING</a>
+  </main>
+
+  <div id="footer-placeholder"></div>
+  <script type="module" src="../assets/js/main.js"></script>
+  <script type="module">
+    import { formatPrice } from '../assets/js/utils/helpers.js';
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const orderDataRaw = localStorage.getItem('zevvo_last_order');
+      if (!orderDataRaw) {
+        window.location.href = '../index.html';
+        return;
+      }
+
+      const order = JSON.parse(orderDataRaw);
+      document.getElementById('confirmEmail').textContent = order.email || 'your email';
+      document.getElementById('confirmOrderId').textContent = '#' + order.orderId;
+      document.getElementById('confirmDate').textContent = order.date;
+
+      const itemsList = document.getElementById('confirmItemsList');
+      itemsList.innerHTML = order.items.map(item => `
+        <div class="flex gap-md align-center">
+          <img src="${item.image}" alt="${item.name}" style="width: 50px; height: 65px; object-fit: cover;">
+          <div style="flex: 1;">
+            <div class="font-heading font-bold text-xs">${item.name}</div>
+            <div class="text-xs text-muted">Color: ${item.color} | Size: ${item.size} | Qty: ${item.quantity}</div>
+          </div>
+          <div class="font-heading font-bold text-xs">${formatPrice(item.price * item.quantity)}</div>
+        </div>
+      `).join('');
+
+      const total = order.subtotal * 1.08;
+      document.getElementById('confirmTotalPaid').textContent = formatPrice(total);
+    });
+  </script>
+</body>
+</html>

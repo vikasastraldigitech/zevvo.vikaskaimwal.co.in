@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout | ZEVVO</title>
+  <meta name="description" content="Complete your purchase securely at ZEVVO. Enter shipping and payment details.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400..800;1,400..800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <link rel="stylesheet" href="../assets/css/main.css">
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- Minimal Header for Checkout -->
+  <header class="checkout-header">
+    <div class="container flex-between align-center">
+      <a href="../index.html" class="brand-logo">ZEVVO</a>
+      <a href="cart.html" class="text-xs font-heading font-bold uppercase"><i class="fa-solid fa-arrow-left"></i> Return to Bag</a>
+    </div>
+  </header>
+
+  <main id="main-content" class="container my-2xl">
+    <h1 class="listing-title mb-xl">CHECKOUT</h1>
+
+    <div class="checkout-grid">
+      <!-- Left: Checkout Forms -->
+      <div>
+        <form id="checkoutForm" onsubmit="event.preventDefault(); placeOrder();">
+          <!-- Contact Info -->
+          <section class="mb-2xl">
+            <h2 class="checkout-section-title">1. CONTACT INFORMATION</h2>
+            <div class="form-group">
+              <label class="form-label" for="email">Email Address *</label>
+              <input type="email" id="email" required placeholder="you@example.com" class="form-input">
+            </div>
+            <label class="form-checkbox">
+              <input type="checkbox" checked>
+              <span>Keep me updated on exclusive drops and promotions</span>
+            </label>
+          </section>
+
+          <!-- Shipping Address -->
+          <section class="mb-2xl">
+            <h2 class="checkout-section-title">2. SHIPPING ADDRESS</h2>
+            <div class="grid gap-md" style="display: grid; grid-template-columns: 1fr 1fr;">
+              <div class="form-group">
+                <label class="form-label" for="firstName">First Name *</label>
+                <input type="text" id="firstName" required class="form-input">
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="lastName">Last Name *</label>
+                <input type="text" id="lastName" required class="form-input">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="address">Street Address *</label>
+              <input type="text" id="address" required placeholder="123 Fashion Ave, Apt 4" class="form-input">
+            </div>
+
+            <div class="grid gap-md" style="display: grid; grid-template-columns: 1fr 1fr 1fr;">
+              <div class="form-group">
+                <label class="form-label" for="city">City *</label>
+                <input type="text" id="city" required class="form-input">
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="state">State *</label>
+                <input type="text" id="state" required class="form-input">
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="zip">ZIP Code *</label>
+                <input type="text" id="zip" required class="form-input">
+              </div>
+            </div>
+          </section>
+
+          <!-- Delivery Method -->
+          <section class="mb-2xl">
+            <h2 class="checkout-section-title">3. DELIVERY METHOD</h2>
+            <div class="delivery-options">
+              <label class="delivery-option-card active">
+                <div>
+                  <input type="radio" name="delivery" value="standard" checked>
+                  <span class="font-heading font-bold text-xs uppercase ml-xs">Standard Shipping (3-5 Business Days)</span>
+                </div>
+                <span class="font-heading font-bold text-xs">FREE</span>
+              </label>
+
+              <label class="delivery-option-card mt-xs">
+                <div>
+                  <input type="radio" name="delivery" value="express">
+                  <span class="font-heading font-bold text-xs uppercase ml-xs">Express Shipping (1-2 Business Days)</span>
+                </div>
+                <span class="font-heading font-bold text-xs">$15.00</span>
+              </label>
+            </div>
+          </section>
+
+          <!-- Payment Form UI -->
+          <section class="mb-2xl">
+            <h2 class="checkout-section-title">4. PAYMENT METHOD</h2>
+            <div class="form-group">
+              <label class="form-label" for="cardNumber">Card Number (Demo only) *</label>
+              <input type="text" id="cardNumber" placeholder="4532 •••• •••• 8892" required class="form-input">
+            </div>
+
+            <div class="grid gap-md" style="display: grid; grid-template-columns: 1fr 1fr;">
+              <div class="form-group">
+                <label class="form-label" for="cardExpiry">Expiration (MM/YY) *</label>
+                <input type="text" id="cardExpiry" placeholder="08/28" required class="form-input">
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="cardCvc">CVC *</label>
+                <input type="text" id="cardCvc" placeholder="123" required class="form-input">
+              </div>
+            </div>
+          </section>
+
+          <button type="submit" class="btn btn-primary btn-full btn-lg">PLACE ORDER</button>
+        </form>
+      </div>
+
+      <!-- Right: Summary Sidebar -->
+      <div>
+        <div class="cart-summary-box">
+          <h3 class="font-heading text-md mb-lg">IN YOUR BAG</h3>
+          <div id="checkoutSummaryItems" class="flex flex-column gap-md mb-lg">
+            <!-- JS Populated -->
+          </div>
+          <div class="summary-row summary-total">
+            <span>TOTAL</span>
+            <span id="checkoutTotal">$0.00</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script type="module">
+    import { Cart } from '../assets/js/modules/cart.js';
+    import { formatPrice } from '../assets/js/utils/helpers.js';
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const items = Cart.getCart();
+      if (items.length === 0) {
+        window.location.href = 'cart.html';
+        return;
+      }
+
+      const itemsContainer = document.getElementById('checkoutSummaryItems');
+      itemsContainer.innerHTML = items.map(item => `
+        <div class="flex gap-md align-center" style="border-bottom: 1px solid var(--color-border); padding-bottom: 0.75rem;">
+          <img src="${item.image}" alt="${item.name}" style="width: 50px; height: 65px; object-fit: cover;">
+          <div style="flex: 1;">
+            <div class="font-heading font-bold text-xs">${item.name}</div>
+            <div class="text-xs text-muted">Qty: ${item.quantity} | Size: ${item.size}</div>
+          </div>
+          <div class="font-heading font-bold text-xs">${formatPrice(item.price * item.quantity)}</div>
+        </div>
+      `).join('');
+
+      const subtotal = Cart.getSubtotal();
+      const tax = subtotal * 0.08;
+      document.getElementById('checkoutTotal').textContent = formatPrice(subtotal + tax);
+    });
+
+    window.placeOrder = function() {
+      const email = document.getElementById('email').value;
+      const firstName = document.getElementById('firstName').value;
+      const lastName = document.getElementById('lastName').value;
+
+      const orderData = {
+        orderId: 'ZEV-' + Math.floor(100000 + Math.random() * 900000),
+        customerName: `${firstName} ${lastName}`,
+        email: email,
+        items: Cart.getCart(),
+        subtotal: Cart.getSubtotal(),
+        date: new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })
+      };
+
+      localStorage.setItem('zevvo_last_order', JSON.stringify(orderData));
+      Cart.clearCart();
+      window.location.href = 'confirmation.html';
+    };
+  </script>
+</body>
+</html>

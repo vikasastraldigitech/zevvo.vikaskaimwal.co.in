@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Details | ZEVVO</title>
+  <meta name="description" content="Shop this product on ZEVVO. High-quality apparel and lifestyle item with modern design aesthetics.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400..800;1,400..800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <link rel="stylesheet" href="../assets/css/main.css">
+
+  <!-- JSON-LD Structured Data Schema Placeholder -->
+  <script type="application/ld+json" id="productSchema"></script>
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  <div id="header-placeholder"></div>
+
+  <main id="main-content" class="container my-3xl">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="../index.html">Home</a>
+      <i class="fa-solid fa-chevron-right text-xs"></i>
+      <a href="category.html" id="pdpCategoryLink">Shop</a>
+      <i class="fa-solid fa-chevron-right text-xs"></i>
+      <span id="pdpTitleBreadcrumb">Product</span>
+    </nav>
+
+    <div class="product-detail-grid">
+      <!-- Gallery Left -->
+      <div class="gallery-wrapper">
+        <div class="gallery-thumbnails" id="galleryThumbs">
+          <!-- JS Rendered -->
+        </div>
+        <div class="gallery-main-image">
+          <img id="mainGalleryImg" src="" alt="Product Detail">
+        </div>
+      </div>
+
+      <!-- Details Right -->
+      <div class="product-info-col">
+        <div>
+          <span class="product-brand" id="pdpBrand">ZEVVO</span>
+          <h1 class="product-title" id="pdpName">Product Title</h1>
+          <div class="product-rating mt-xs">
+            <div class="stars">
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star-half-stroke"></i>
+            </div>
+            <span class="text-xs text-muted" id="pdpReviews">(4.8 / 45 reviews)</span>
+          </div>
+        </div>
+
+        <div class="product-card-price" style="font-size: var(--font-xl);">
+          <span id="pdpCurrentPrice">$0.00</span>
+          <span id="pdpOriginalPrice" class="price-original" style="display: none;"></span>
+        </div>
+
+        <p class="text-sm text-muted" id="pdpDescription">
+          Loading product description...
+        </p>
+
+        <!-- Color Selection -->
+        <div>
+          <div class="option-group-title">COLOR: <span id="pdpColorLabel" class="font-normal text-muted">Select Color</span></div>
+          <div class="swatch-picker" id="pdpColorPicker">
+            <!-- JS Swatches -->
+          </div>
+        </div>
+
+        <!-- Size Selection -->
+        <div>
+          <div class="option-group-title">SIZE</div>
+          <div class="size-picker" id="pdpSizePicker">
+            <!-- JS Sizes -->
+          </div>
+        </div>
+
+        <!-- Quantity & Add to Bag -->
+        <div class="pdp-action-buttons">
+          <div class="quantity-selector">
+            <button class="qty-btn" id="qtyMinus">-</button>
+            <input type="text" value="1" readonly class="qty-input" id="qtyInput">
+            <button class="qty-btn" id="qtyPlus">+</button>
+          </div>
+          <button class="btn btn-primary btn-full" id="pdpAddBagBtn">ADD TO BAG</button>
+          <button class="btn btn-outline" id="pdpWishlistBtn" aria-label="Save Item"><i class="fa-regular fa-heart"></i></button>
+        </div>
+
+        <!-- Accordions -->
+        <div class="pdp-accordions mt-lg">
+          <div class="pdp-accordion-item active">
+            <button class="pdp-accordion-header">
+              <span>DETAILS & FIT</span>
+              <i class="fa-solid fa-chevron-down"></i>
+            </button>
+            <div class="pdp-accordion-content">
+              <ul id="pdpDetailsList" style="list-style: disc; padding-left: 1.2rem;">
+                <!-- JS Populated -->
+              </ul>
+            </div>
+          </div>
+
+          <div class="pdp-accordion-item">
+            <button class="pdp-accordion-header">
+              <span>SHIPPING & RETURNS</span>
+              <i class="fa-solid fa-chevron-down"></i>
+            </button>
+            <div class="pdp-accordion-content">
+              <p>Free standard shipping on all orders over $75. Returns and exchanges accepted within 30 days of purchase in original condition.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Recommendations Carousel -->
+    <section class="my-3xl">
+      <h2 class="section-title text-left">YOU MAY ALSO LIKE</h2>
+      <div class="carousel-wrapper">
+        <button class="carousel-arrow carousel-arrow-left" id="pdpRecPrev"><i class="fa-solid fa-chevron-left"></i></button>
+        <div class="carousel-container" id="pdpRecCarousel">
+          <!-- JS Populated -->
+        </div>
+        <button class="carousel-arrow carousel-arrow-right" id="pdpRecNext"><i class="fa-solid fa-chevron-right"></i></button>
+      </div>
+    </section>
+  </main>
+
+  <div id="footer-placeholder"></div>
+  <script type="module" src="../assets/js/main.js"></script>
+  <script type="module">
+    import { API } from '../assets/js/utils/api.js';
+    import { Cart } from '../assets/js/modules/cart.js';
+    import { Wishlist } from '../assets/js/modules/wishlist.js';
+    import { formatPrice } from '../assets/js/utils/helpers.js';
+    import { renderProductCardHTML, attachCardEventListeners } from '../assets/js/main.js';
+    import { initCarousel } from '../assets/js/modules/carousel.js';
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      const params = new URLSearchParams(window.location.search);
+      const productId = params.get('id') || 'prod-101';
+
+      const product = await API.getProductById(productId);
+      if (!product) return;
+
+      // Schema Injection for SEO
+      const schema = {
+        "@context": "https://schema.org/",
+        "@type": "Product",
+        "name": product.name,
+        "image": [product.colors[0]?.image],
+        "description": product.description,
+        "brand": { "@type": "Brand", "name": product.brand },
+        "offers": {
+          "@type": "Offer",
+          "priceCurrency": "USD",
+          "price": product.price,
+          "availability": "https://schema.org/InStock"
+        }
+      };
+      document.getElementById('productSchema').textContent = JSON.stringify(schema);
+
+      // Populate Text
+      document.title = `${product.name} | ZEVVO`;
+      document.getElementById('pdpTitleBreadcrumb').textContent = product.name;
+      document.getElementById('pdpBrand').textContent = product.brand;
+      document.getElementById('pdpName').textContent = product.name;
+      document.getElementById('pdpReviews').textContent = `(${product.rating} / ${product.reviewCount} reviews)`;
+      document.getElementById('pdpCurrentPrice').textContent = formatPrice(product.price);
+      if (product.originalPrice) {
+        const orig = document.getElementById('pdpOriginalPrice');
+        orig.textContent = formatPrice(product.originalPrice);
+        orig.style.display = 'inline';
+      }
+      document.getElementById('pdpDescription').textContent = product.description;
+
+      const detailsList = document.getElementById('pdpDetailsList');
+      if (detailsList && product.details) {
+        detailsList.innerHTML = product.details.map(d => `<li>${d}</li>`).join('');
+      }
+
+      // Selected States
+      let selectedColor = product.colors[0];
+      let selectedSize = product.sizes ? product.sizes[0] : 'One Size';
+      let selectedQty = 1;
+
+      // Color Swatches
+      const colorPicker = document.getElementById('pdpColorPicker');
+      const colorLabel = document.getElementById('pdpColorLabel');
+      if (colorPicker) {
+        colorPicker.innerHTML = product.colors.map((c, idx) => `
+          <button class="swatch-btn-lg ${idx === 0 ? 'active' : ''}" data-name="${c.name}" style="background-color: ${c.hex};" title="${c.name}"></button>
+        `).join('');
+
+        colorLabel.textContent = selectedColor.name;
+
+        colorPicker.querySelectorAll('.swatch-btn-lg').forEach(btn => {
+          btn.addEventListener('click', () => {
+            colorPicker.querySelectorAll('.swatch-btn-lg').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            selectedColor = product.colors.find(c => c.name === btn.dataset.name);
+            colorLabel.textContent = selectedColor.name;
+            updateGalleryImages();
+          });
+        });
+      }
+
+      // Sizes Picker
+      const sizePicker = document.getElementById('pdpSizePicker');
+      if (sizePicker) {
+        sizePicker.innerHTML = product.sizes.map((s, idx) => `
+          <button class="size-btn-lg ${idx === 0 ? 'active' : ''}" data-size="${s}">${s}</button>
+        `).join('');
+
+        sizePicker.querySelectorAll('.size-btn-lg').forEach(btn => {
+          btn.addEventListener('click', () => {
+            sizePicker.querySelectorAll('.size-btn-lg').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            selectedSize = btn.dataset.size;
+          });
+        });
+      }
+
+      // Quantity Selector
+      const qtyInput = document.getElementById('qtyInput');
+      document.getElementById('qtyMinus').addEventListener('click', () => {
+        if (selectedQty > 1) {
+          selectedQty--;
+          qtyInput.value = selectedQty;
+        }
+      });
+      document.getElementById('qtyPlus').addEventListener('click', () => {
+        selectedQty++;
+        qtyInput.value = selectedQty;
+      });
+
+      // Gallery Update
+      function updateGalleryImages() {
+        const mainImg = document.getElementById('mainGalleryImg');
+        const thumbs = document.getElementById('galleryThumbs');
+
+        const images = [selectedColor.image, selectedColor.hoverImage].filter(Boolean);
+        mainImg.src = images[0];
+
+        thumbs.innerHTML = images.map((img, idx) => `
+          <img class="thumb-item ${idx === 0 ? 'active' : ''}" src="${img}" alt="Thumbnail ${idx}">
+        `).join('');
+
+        thumbs.querySelectorAll('.thumb-item').forEach(thumb => {
+          thumb.addEventListener('click', () => {
+            thumbs.querySelectorAll('.thumb-item').forEach(t => t.classList.remove('active'));
+            thumb.classList.add('active');
+            mainImg.src = thumb.src;
+          });
+        });
+      }
+
+      updateGalleryImages();
+
+      // Accordion
+      document.querySelectorAll('.pdp-accordion-header').forEach(header => {
+        header.addEventListener('click', () => {
+          const item = header.closest('.pdp-accordion-item');
+          item.classList.toggle('active');
+        });
+      });
+
+      // Wishlist Button
+      const wishBtn = document.getElementById('pdpWishlistBtn');
+      const updateWishIcon = () => {
+        const inWish = Wishlist.isInWishlist(product.id);
+        wishBtn.querySelector('i').className = inWish ? 'fa-solid fa-heart' : 'fa-regular fa-heart';
+        wishBtn.style.color = inWish ? 'var(--color-sale)' : 'inherit';
+      };
+      updateWishIcon();
+
+      wishBtn.addEventListener('click', () => {
+        Wishlist.toggleWishlist(product);
+        updateWishIcon();
+      });
+
+      // Add To Bag
+      document.getElementById('pdpAddBagBtn').addEventListener('click', () => {
+        Cart.addItem(product, selectedColor, selectedSize, selectedQty);
+      });
+
+      // Recommended Products
+      const allProducts = await API.getProducts();
+      const recs = allProducts.filter(p => p.category === product.category && p.id !== product.id).slice(0, 8);
+      const recContainer = document.getElementById('pdpRecCarousel');
+      if (recContainer) {
+        recContainer.innerHTML = recs.map(p => renderProductCardHTML(p)).join('');
+        attachCardEventListeners(recContainer, allProducts);
+        initCarousel('pdpRecCarousel', 'pdpRecPrev', 'pdpRecNext');
+      }
+    });
+  </script>
+</body>
+</html>

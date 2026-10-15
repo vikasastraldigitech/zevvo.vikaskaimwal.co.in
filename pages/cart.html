@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shopping Bag | ZEVVO</title>
+  <meta name="description" content="View items in your ZEVVO shopping bag, apply promo codes, and proceed to checkout.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400..800;1,400..800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <link rel="stylesheet" href="../assets/css/main.css">
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  <div id="header-placeholder"></div>
+
+  <main id="main-content" class="container my-3xl">
+    <h1 class="listing-title">YOUR SHOPPING BAG (<span id="cartCountHeader">0</span>)</h1>
+
+    <div class="cart-grid" id="cartContentWrapper">
+      <!-- Left: Line Items Table -->
+      <div>
+        <div class="cart-table-header">
+          <span>ITEM</span>
+          <span class="text-center">PRICE</span>
+          <span class="text-center">QTY</span>
+          <span class="text-right">TOTAL</span>
+        </div>
+
+        <div id="cartItemsList">
+          <!-- JS Rendered Line Items -->
+        </div>
+
+        <div id="emptyCartMsg" class="text-center my-3xl" style="display: none;">
+          <h3>YOUR BAG IS CURRENTLY EMPTY</h3>
+          <p class="text-muted mt-xs mb-lg">Looks like you haven't added anything to your bag yet.</p>
+          <a href="category.html?cat=new" class="btn btn-primary">START SHOPPING</a>
+        </div>
+      </div>
+
+      <!-- Right: Summary Box -->
+      <div id="cartSummaryCol">
+        <div class="cart-summary-box">
+          <h3 class="font-heading text-md mb-lg">ORDER SUMMARY</h3>
+
+          <div class="summary-row">
+            <span class="text-muted">Subtotal</span>
+            <span id="summarySubtotal">$0.00</span>
+          </div>
+
+          <div class="summary-row" id="discountRow" style="display: none;">
+            <span class="text-sale">Promo Discount</span>
+            <span id="summaryDiscount" class="text-sale">-$0.00</span>
+          </div>
+
+          <div class="summary-row">
+            <span class="text-muted">Estimated Shipping</span>
+            <span id="summaryShipping">FREE</span>
+          </div>
+
+          <div class="summary-row">
+            <span class="text-muted">Estimated Tax</span>
+            <span id="summaryTax">$0.00</span>
+          </div>
+
+          <div class="summary-row summary-total">
+            <span>ESTIMATED TOTAL</span>
+            <span id="summaryTotal">$0.00</span>
+          </div>
+
+          <!-- Promo Code Form -->
+          <div class="my-lg">
+            <label for="promoCodeInput" class="form-label">PROMO CODE</label>
+            <div class="flex gap-xs mt-2xs">
+              <input type="text" id="promoCodeInput" placeholder="Try ZEVVO10 or ZEVVO15" class="form-input" style="padding: 0.5rem;">
+              <button class="btn btn-outline btn-sm" id="applyPromoBtn">APPLY</button>
+            </div>
+            <span id="promoMsg" class="text-xs mt-2xs block"></span>
+          </div>
+
+          <a href="checkout.html" class="btn btn-primary btn-full btn-lg">PROCEED TO CHECKOUT</a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <div id="footer-placeholder"></div>
+  <script type="module" src="../assets/js/main.js"></script>
+  <script type="module">
+    import { Cart } from '../assets/js/modules/cart.js';
+    import { formatPrice } from '../assets/js/utils/helpers.js';
+
+    let discountAmount = 0;
+
+    document.addEventListener('DOMContentLoaded', () => {
+      renderBag();
+
+      window.addEventListener('zevvo:cart-updated', () => {
+        renderBag();
+      });
+
+      document.getElementById('applyPromoBtn')?.addEventListener('click', () => {
+        const input = document.getElementById('promoCodeInput');
+        const code = (input.value || '').trim().toUpperCase();
+        const promoMsg = document.getElementById('promoMsg');
+
+        const subtotal = Cart.getSubtotal();
+
+        if (code === 'ZEVVO10') {
+          discountAmount = 10.00;
+          promoMsg.textContent = 'Code ZEVVO10 applied ($10 OFF)!';
+          promoMsg.style.color = 'var(--color-success)';
+        } else if (code === 'ZEVVO15') {
+          discountAmount = subtotal * 0.15;
+          promoMsg.textContent = 'Code ZEVVO15 applied (15% OFF)!';
+          promoMsg.style.color = 'var(--color-success)';
+        } else {
+          discountAmount = 0;
+          promoMsg.textContent = 'Invalid promo code. Try ZEVVO10 or ZEVVO15.';
+          promoMsg.style.color = 'var(--color-sale)';
+        }
+        updateTotals();
+      });
+    });
+
+    function renderBag() {
+      const items = Cart.getCart();
+      const listContainer = document.getElementById('cartItemsList');
+      const emptyMsg = document.getElementById('emptyCartMsg');
+      const summaryCol = document.getElementById('cartSummaryCol');
+      const countHeader = document.getElementById('cartCountHeader');
+
+      if (countHeader) countHeader.textContent = Cart.getItemCount();
+
+      if (items.length === 0) {
+        if (listContainer) listContainer.innerHTML = '';
+        if (emptyMsg) emptyMsg.style.display = 'block';
+        if (summaryCol) summaryCol.style.display = 'none';
+        return;
+      }
+
+      if (emptyMsg) emptyMsg.style.display = 'none';
+      if (summaryCol) summaryCol.style.display = 'block';
+
+      if (listContainer) {
+        listContainer.innerHTML = items.map(item => `
+          <div class="cart-item-row" data-key="${item.itemKey}">
+            <div class="cart-item-info">
+              <img src="${item.image}" alt="${item.name}" class="cart-item-img">
+              <div class="cart-item-details">
+                <a href="product.html?id=${item.productId}" class="cart-item-title">${item.name}</a>
+                <span class="cart-item-meta">Color: ${item.color}</span>
+                <span class="cart-item-meta">Size: ${item.size}</span>
+                <button class="cart-item-remove" data-key="${item.itemKey}">Remove</button>
+              </div>
+            </div>
+
+            <div class="text-center font-heading font-bold text-sm">
+              ${formatPrice(item.price)}
+            </div>
+
+            <div class="text-center flex justify-center">
+              <div class="quantity-selector" style="height: 36px;">
+                <button class="qty-btn qty-decrease" data-key="${item.itemKey}">-</button>
+                <input type="text" value="${item.quantity}" readonly class="qty-input" style="width: 30px;">
+                <button class="qty-btn qty-increase" data-key="${item.itemKey}">+</button>
+              </div>
+            </div>
+
+            <div class="text-right font-heading font-bold text-sm">
+              ${formatPrice(item.price * item.quantity)}
+            </div>
+          </div>
+        `).join('');
+
+        // Listeners for quantity and remove
+        listContainer.querySelectorAll('.cart-item-remove').forEach(btn => {
+          btn.addEventListener('click', () => {
+            Cart.removeItem(btn.dataset.key);
+          });
+        });
+
+        listContainer.querySelectorAll('.qty-decrease').forEach(btn => {
+          btn.addEventListener('click', () => {
+            const item = items.find(i => i.itemKey === btn.dataset.key);
+            if (item) Cart.updateQuantity(item.itemKey, item.quantity - 1);
+          });
+        });
+
+        listContainer.querySelectorAll('.qty-increase').forEach(btn => {
+          btn.addEventListener('click', () => {
+            const item = items.find(i => i.itemKey === btn.dataset.key);
+            if (item) Cart.updateQuantity(item.itemKey, item.quantity + 1);
+          });
+        });
+      }
+
+      updateTotals();
+    }
+
+    function updateTotals() {
+      const subtotal = Cart.getSubtotal();
+      const shipping = subtotal >= 75 || subtotal === 0 ? 0 : 7.95;
+      const tax = (subtotal - discountAmount) * 0.08;
+      const total = Math.max(0, subtotal - discountAmount + shipping + tax);
+
+      document.getElementById('summarySubtotal').textContent = formatPrice(subtotal);
+      document.getElementById('summaryShipping').textContent = shipping === 0 ? 'FREE' : formatPrice(shipping);
+      document.getElementById('summaryTax').textContent = formatPrice(tax);
+      document.getElementById('summaryTotal').textContent = formatPrice(total);
+
+      const discountRow = document.getElementById('discountRow');
+      if (discountAmount > 0) {
+        discountRow.style.display = 'flex';
+        document.getElementById('summaryDiscount').textContent = `-${formatPrice(discountAmount)}`;
+      } else {
+        discountRow.style.display = 'none';
+      }
+    }
+  </script>
+</body>
+</html>

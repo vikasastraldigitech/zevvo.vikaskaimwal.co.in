@@ -1,0 +1,88 @@
+[
+  {
+    "id": "new",
+    "name": "New",
+    "slug": "new",
+    "subcategories": [
+      { "name": "Just Dropped", "slug": "just-dropped" },
+      { "name": "Trending Now", "slug": "trending" },
+      { "name": "Best Sellers", "slug": "best-sellers" },
+      { "name": "Lookbook", "slug": "lookbook" }
+    ],
+    "featuredImage": "https://picsum.photos/seed/cat-new-feat/400/500"
+  },
+  {
+    "id": "women",
+    "name": "Women",
+    "slug": "women",
+    "subcategories": [
+      { "name": "Tops & Tees", "slug": "tops" },
+      { "name": "Dresses & Jumpers", "slug": "dresses" },
+      { "name": "Jackets & Outerwear", "slug": "jackets" },
+      { "name": "Pants & Jeans", "slug": "pants" },
+      { "name": "Accessories", "slug": "accessories" }
+    ],
+    "featuredImage": "https://picsum.photos/seed/cat-women-feat/400/500"
+  },
+  {
+    "id": "men",
+    "name": "Men",
+    "slug": "men",
+    "subcategories": [
+      { "name": "Graphic Tees", "slug": "graphic-tees" },
+      { "name": "Shirts & Button-Downs", "slug": "shirts" },
+      { "name": "Hoodies & Sweatshirts", "slug": "hoodies" },
+      { "name": "Pants & Shorts", "slug": "men-pants" },
+      { "name": "Outerwear", "slug": "men-outerwear" }
+    ],
+    "featuredImage": "https://picsum.photos/seed/cat-men-feat/400/500"
+  },
+  {
+    "id": "home",
+    "name": "Home & Gifts",
+    "slug": "home",
+    "subcategories": [
+      { "name": "Bedding & Tapestries", "slug": "bedding" },
+      { "name": "Lighting & Lamps", "slug": "lighting" },
+      { "name": "Decor & Mirrors", "slug": "decor" },
+      { "name": "Kitchen & Bar", "slug": "kitchen" }
+    ],
+    "featuredImage": "https://picsum.photos/seed/cat-home-feat/400/500"
+  },
+  {
+    "id": "beauty",
+    "name": "Beauty",
+    "slug": "beauty",
+    "subcategories": [
+      { "name": "Skincare", "slug": "skincare" },
+      { "name": "Fragrance & Perfume", "slug": "fragrance" },
+      { "name": "Haircare", "slug": "haircare" },
+      { "name": "Makeup & Nails", "slug": "makeup" }
+    ],
+    "featuredImage": "https://picsum.photos/seed/cat-beauty-feat/400/500"
+  },
+  {
+    "id": "lifestyle",
+    "name": "Music & Lifestyle",
+    "slug": "lifestyle",
+    "subcategories": [
+      { "name": "Vinyl Records", "slug": "vinyl" },
+      { "name": "Audio & Speakers", "slug": "audio" },
+      { "name": "Cameras & Film", "slug": "cameras" },
+      { "name": "Games & Books", "slug": "games" }
+    ],
+    "featuredImage": "https://picsum.photos/seed/cat-lifestyle-feat/400/500"
+  },
+  {
+    "id": "sale",
+    "name": "Sale",
+    "slug": "sale",
+    "subcategories": [
+      { "name": "Women's Sale", "slug": "women-sale" },
+      { "name": "Men's Sale", "slug": "men-sale" },
+      { "name": "Home Sale", "slug": "home-sale" },
+      { "name": "Clearance", "slug": "clearance" }
+    ],
+    "featuredImage": "https://picsum.photos/seed/cat-sale-feat/400/500"
+  }
+]

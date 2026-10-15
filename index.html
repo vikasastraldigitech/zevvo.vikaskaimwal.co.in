@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ZEVVO | Modern Apparel, Home & Lifestyle Essentials</title>
+  <meta name="description" content="Discover modern apparel, room decor, vinyl records, and lifestyle essentials at ZEVVO. Original designs with clean, minimalist aesthetics.">
+
+  <!-- Preconnect & Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400..800;1,400..800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+  <!-- Skip Link for Accessibility -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- Header Placeholder -->
+  <div id="header-placeholder"></div>
+
+  <!-- Main Content -->
+  <main id="main-content">
+    <!-- Hero Banner -->
+    <section class="hero-section">
+      <img src="https://picsum.photos/seed/zevvo-hero-bg/1440/800" alt="ZEVVO Spring Lookbook" class="hero-image" width="1440" height="800" priority>
+      <div class="hero-overlay">
+        <div class="hero-content">
+          <p class="hero-subtitle">SPRING / SUMMER '25 LOOKBOOK</p>
+          <h1 class="hero-title">EFFORTLESS UTILITY & URBAN LAYERS</h1>
+          <div class="hero-buttons">
+            <a href="pages/category.html?cat=women" class="btn btn-white">SHOP WOMEN</a>
+            <a href="pages/category.html?cat=men" class="btn btn-outline" style="border-color: #fff; color: #fff;">SHOP MEN</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Shop By Category Tiles -->
+    <section class="category-tiles-section container">
+      <h2 class="section-title">SHOP BY CATEGORY</h2>
+      <div class="tiles-grid">
+        <a href="pages/category.html?cat=women" class="tile-card">
+          <img src="https://picsum.photos/seed/cat-tile-women/600/800" alt="Women's Fashion" loading="lazy" width="600" height="800">
+          <div class="tile-overlay">
+            <span class="tile-title">WOMEN</span>
+          </div>
+        </a>
+        <a href="pages/category.html?cat=men" class="tile-card">
+          <img src="https://picsum.photos/seed/cat-tile-men/600/800" alt="Men's Fashion" loading="lazy" width="600" height="800">
+          <div class="tile-overlay">
+            <span class="tile-title">MEN</span>
+          </div>
+        </a>
+        <a href="pages/category.html?cat=home" class="tile-card">
+          <img src="https://picsum.photos/seed/cat-tile-home/600/800" alt="Home Decor" loading="lazy" width="600" height="800">
+          <div class="tile-overlay">
+            <span class="tile-title">HOME & GIFTS</span>
+          </div>
+        </a>
+        <a href="pages/category.html?cat=lifestyle" class="tile-card">
+          <img src="https://picsum.photos/seed/cat-tile-lifestyle/600/800" alt="Music & Lifestyle" loading="lazy" width="600" height="800">
+          <div class="tile-overlay">
+            <span class="tile-title">MUSIC & LIFESTYLE</span>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <!-- Carousel: New Arrivals -->
+    <section class="container my-3xl">
+      <div class="flex-between align-center mb-lg">
+        <h2 class="section-title text-left mb-0">NEW ARRIVALS</h2>
+        <a href="pages/category.html?cat=new" class="link-underline">VIEW ALL</a>
+      </div>
+      <div class="carousel-wrapper">
+        <button class="carousel-arrow carousel-arrow-left" id="newPrevBtn" aria-label="Previous Products"><i class="fa-solid fa-chevron-left"></i></button>
+        <div class="carousel-container" id="newArrivalsCarousel">
+          <!-- Rendered via JS -->
+        </div>
+        <button class="carousel-arrow carousel-arrow-right" id="newNextBtn" aria-label="Next Products"><i class="fa-solid fa-chevron-right"></i></button>
+      </div>
+    </section>
+
+    <!-- Editorial Promo Banner -->
+    <section class="editorial-banner container">
+      <img src="https://picsum.photos/seed/edit-banner-1/800/600" alt="Vintage Audio & Vinyl" class="editorial-img" loading="lazy" width="800" height="600">
+      <div class="editorial-content">
+        <span class="editorial-tag">ANALOG CULTURE</span>
+        <h2 class="editorial-title">SOUNDS & VINYL REVIVAL</h2>
+        <p class="editorial-desc">Immerse yourself in high-fidelity sound with our curated selection of wireless turntables, instant film cameras, and exclusive vinyl presses.</p>
+        <a href="pages/category.html?cat=lifestyle" class="btn btn-primary">EXPLORE LIFESTYLE</a>
+      </div>
+    </section>
+
+    <!-- Carousel: Best Sellers -->
+    <section class="container my-3xl">
+      <div class="flex-between align-center mb-lg">
+        <h2 class="section-title text-left mb-0">BEST SELLERS</h2>
+        <a href="pages/category.html?cat=new&sub=best-sellers" class="link-underline">VIEW ALL</a>
+      </div>
+      <div class="carousel-wrapper">
+        <button class="carousel-arrow carousel-arrow-left" id="bestPrevBtn" aria-label="Previous Best Sellers"><i class="fa-solid fa-chevron-left"></i></button>
+        <div class="carousel-container" id="bestSellersCarousel">
+          <!-- Rendered via JS -->
+        </div>
+        <button class="carousel-arrow carousel-arrow-right" id="bestNextBtn" aria-label="Next Best Sellers"><i class="fa-solid fa-chevron-right"></i></button>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer Placeholder -->
+  <div id="footer-placeholder"></div>
+
+  <!-- Scripts -->
+  <script type="module" src="assets/js/main.js"></script>
+</body>
+</html>

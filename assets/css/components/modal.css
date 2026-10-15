@@ -1,0 +1,106 @@
+/* Modal Component */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--color-overlay);
+  z-index: var(--z-modal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-md);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--transition-base), visibility var(--transition-base);
+}
+
+.modal-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-content {
+  background-color: var(--color-bg);
+  width: 100%;
+  max-width: 800px;
+  position: relative;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: var(--space-xl);
+}
+
+.modal-close-btn {
+  position: absolute;
+  top: var(--space-md);
+  right: var(--space-md);
+  font-size: var(--font-2xl);
+  color: var(--color-text);
+  line-height: 1;
+}
+
+.modal-body-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-xl);
+}
+
+@media (min-width: 640px) {
+  .modal-body-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.modal-img-col img {
+  width: 100%;
+  aspect-ratio: 3/4;
+  object-fit: cover;
+}
+
+.swatch-btn {
+  width: 24px;
+  height: 24px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--color-border);
+  cursor: pointer;
+  outline-offset: 2px;
+}
+
+.swatch-btn.active {
+  outline: 2px solid var(--color-text);
+}
+
+.size-btn {
+  padding: 0.4rem 0.8rem;
+  border: var(--border-width) solid var(--color-border-dark);
+  font-size: var(--font-xs);
+  font-family: var(--font-heading);
+  background: var(--color-bg);
+  cursor: pointer;
+}
+
+.size-btn.active {
+  background: var(--color-text);
+  color: var(--color-bg);
+}
+
+/* Accordion Component */
+.accordion {
+  border-top: var(--border-width) solid var(--color-border);
+  border-bottom: var(--border-width) solid var(--color-border);
+}
+
+/* Helper Utilities */
+.flex { display: flex; }
+.flex-between { display: flex; justify-content: space-between; }
+.align-center { align-items: center; }
+.gap-xs { gap: var(--space-xs); }
+.gap-sm { gap: var(--space-sm); }
+.gap-md { gap: var(--space-md); }
+.mb-0 { margin-bottom: 0 !important; }
+.mb-xs { margin-bottom: var(--space-xs) !important; }
+.mb-sm { margin-bottom: var(--space-sm) !important; }
+.mb-md { margin-bottom: var(--space-md) !important; }
+.mb-lg { margin-bottom: var(--space-lg) !important; }
+.my-3xl { margin-top: var(--space-3xl); margin-bottom: var(--space-3xl); }
